@@ -1,7 +1,12 @@
 import React from "react";
 import { Play } from "lucide-react";
 
-const RunButton = ({ children, onClick }: any) => {
+interface RunButtonProps {
+  children: React.ReactNode;
+  onClick: () => void;
+}
+
+const RunButton: React.FC<RunButtonProps> = ({ children, onClick }) => {
   return (
     <button
       className="

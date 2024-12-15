@@ -1,6 +1,6 @@
 // src/components/ControlSidebar.tsx
 import React from "react";
-import { aStarSolutionText, dijkstra, dijkstraSolutionText } from "./Data";
+import { aStarSolutionText, dijkstraSolutionText } from "./Data";
 
 interface ControlSidebarProps {
   isPlaying: boolean;

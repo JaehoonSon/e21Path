@@ -174,10 +174,10 @@ const GridCanvas: React.FC = () => {
       <div className="flex-1 flex flex-col items-center space-y-4 p-4">
         <div className="flex flex-row space-x-4">
           <RunButton onClick={() => handleInputChange(dijkstra, "dijkstra")}>
-            Dijkstra's
+            {"Dijkstra's"}
           </RunButton>
           <RunButton onClick={() => handleInputChange(aStar, "aStar")}>
-            A* Algorithm
+            {"A* Algorithm"}
           </RunButton>
         </div>
         <p className="text-white text-2xl font-semibold underline">
