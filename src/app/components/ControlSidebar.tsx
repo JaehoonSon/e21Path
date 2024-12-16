@@ -1,6 +1,5 @@
 // src/components/ControlSidebar.tsx
 import React from "react";
-import { aStarSolutionText, dijkstraSolutionText } from "./Data";
 
 interface ControlSidebarProps {
   isPlaying: boolean;
@@ -8,10 +7,11 @@ interface ControlSidebarProps {
   speed: number;
   onSpeedChange: (newSpeed: number) => void;
   isLastSlide: boolean;
-  cellSize: number; // New prop
-  onCellSizeChange: (newSize: number) => void; // New prop
+  cellSize: number;
+  onCellSizeChange: (newSize: number) => void;
   algorithm: "dijkstra" | "aStar";
   showFinalPath: () => void;
+  solutionText: string;
 }
 
 const ControlSidebar: React.FC<ControlSidebarProps> = ({
@@ -20,10 +20,11 @@ const ControlSidebar: React.FC<ControlSidebarProps> = ({
   speed,
   onSpeedChange,
   isLastSlide,
-  cellSize, // Destructure new prop
-  onCellSizeChange, // Destructure new prop
+  cellSize,
+  onCellSizeChange,
   algorithm,
   showFinalPath,
+  solutionText,
 }) => {
   return (
     <div className="w-64 p-4 bg-gray-100 border-l border-gray-300 flex flex-col space-y-4">
@@ -45,21 +46,20 @@ const ControlSidebar: React.FC<ControlSidebarProps> = ({
       <div>
         <label className="block mb-2">Speed (slides per second):</label>
         <input
-          //   type="number"
+          type="number"
           min={1}
-          max={30000}
+          max={60}
           value={speed}
           onChange={(e) => onSpeedChange(Number(e.target.value))}
           className="w-full px-2 py-1 border rounded"
         />
       </div>
 
-      {/* New section for Cell Size */}
       <div>
         <label className="block mb-2">Cell Size (pixels):</label>
         <input
           type="number"
-          min={10}
+          min={1}
           max={100}
           value={cellSize}
           onChange={(e) => onCellSizeChange(Number(e.target.value))}
@@ -69,13 +69,14 @@ const ControlSidebar: React.FC<ControlSidebarProps> = ({
 
       {isLastSlide && (
         <div className="mt-4 p-2 bg-green-200 text-green-800 rounded">
-          This is the last slide.
+          {algorithm === "dijkstra"
+            ? "Dijkstra's algorithm completed."
+            : "A* Algorithm completed."}
         </div>
       )}
       {isLastSlide && (
         <div className="mt-4 p-2 bg-green-200 text-green-800 rounded">
-          {algorithm == "dijkstra" ? dijkstraSolutionText : ""}
-          {algorithm == "aStar" ? aStarSolutionText : ""}
+          {solutionText}
         </div>
       )}
     </div>
